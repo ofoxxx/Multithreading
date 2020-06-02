@@ -6,6 +6,7 @@ const unsigned short ThreadPool::HighConcurrency = 2 * ThreadPool::LowConcurrenc
 
 ThreadPool::ThreadPool(size_t capacity) : m_stop(false)
 {
+	m_workers.reserve(capacity);
 	for (size_t i = 0; i < capacity; ++i)
 	{
 		m_workers.emplace_back(&ThreadPool::worker, this);
