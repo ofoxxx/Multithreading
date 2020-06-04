@@ -1,5 +1,4 @@
 #include "ThreadPool.h"
-#include <iostream>
 
 const unsigned short ThreadPool::LowConcurrency = std::thread::hardware_concurrency() / 2;
 const unsigned short ThreadPool::HighConcurrency = 2 * ThreadPool::LowConcurrency - 1;
