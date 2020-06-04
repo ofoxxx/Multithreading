@@ -1,4 +1,5 @@
 #include <iostream>
+#include "DynamicPool.h"
 #include "ThreadPool.h"
 #include "UTestCase.h"
 
@@ -12,7 +13,7 @@ bool sleep500ms()
 
 int main()
 {
-	UTestCase p1("pool1", [] {
+	UTestCase p1("ThreadPool", [] {
 		ThreadPool pool;
 		for (int i = 1; i <= 500; ++i)
 		{
@@ -23,6 +24,18 @@ int main()
 	});
 	p1();
 	cout << p1;
+
+	UTestCase p2("DynamicPool", [] {
+		DynamicPool pool;
+		for (int i = 1; i <= 500; ++i)
+		{
+			UTestCase t("test" + to_string(i), sleep500ms);
+			pool.enqueue([t]() mutable { t(); cout << t; });
+		}
+		return true;
+	});
+	p2();
+	cout << p2;
 
 	return 0;
 }
