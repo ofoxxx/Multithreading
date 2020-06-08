@@ -1,4 +1,6 @@
 ﻿#include "UTestCase.h"
+#include "Spinlock.h"
+#include <mutex>
 
 bool UTestCase::operator()()
 {
@@ -10,6 +12,8 @@ bool UTestCase::operator()()
 
 std::ostream& operator<<(std::ostream& os, const UTestCase& tc)
 {
+	static Spinlock spinlock;
+	std::lock_guard<Spinlock> lock(spinlock);
 	if (!tc.name().empty())
 	{
 		os << tc.name() << ": ";

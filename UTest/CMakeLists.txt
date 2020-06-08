@@ -2,4 +2,6 @@
 
 project ("UTest" LANGUAGES CXX)
 
+include_directories("../Spinlock")
+
 add_library(UTest STATIC "UTestCase.cpp" "UTestCase.h")
