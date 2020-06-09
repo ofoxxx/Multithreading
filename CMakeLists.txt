@@ -14,6 +14,6 @@ add_subdirectory ("ThreadPool")
 include_directories("ThreadPool")
 target_link_libraries(main ThreadPool)
 
-add_subdirectory ("UTest")
-include_directories("UTest")
+add_subdirectory ("UTest/UTest")
+include_directories("UTest/UTest")
 target_link_libraries(main UTest)
